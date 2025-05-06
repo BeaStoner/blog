@@ -8,8 +8,8 @@
 <head>
   <meta charset="UTF-8">
 
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon-96x96.png">
+  <link rel="icon" href="/images/favicon-96x96.png">
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -19,21 +19,24 @@
   <meta name="author" content="winter">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="部署单机的centos以及两处错误排查">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://wuzu15hao.com/post/undefined/index.html">
+<meta property="og:title" content="centos环境下部署nacos2.2.0">
+<meta property="og:url" content="https://wuzu15hao.com/post/deployNacosInCentos/index.html">
 <meta property="og:site_name" content="好事">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="部署单机的centos以及两处错误排查">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-03-27T07:23:52.272Z">
-<meta property="article:modified_time" content="2025-03-27T07:23:52.272Z">
+<meta property="article:published_time" content="2025-04-24T03:40:49.000Z">
+<meta property="article:modified_time" content="2025-05-06T10:16:43.004Z">
 <meta property="article:author" content="winter">
+<meta property="article:tag" content="nacos">
+<meta property="article:tag" content="centos">
+<meta property="article:tag" content="踩坑">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hello World - 好事</title>
+  <title>centos环境下部署nacos2.2.0 - 好事</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -67,6 +70,10 @@
 
 
 
+  
+<link rel="stylesheet" style="&#x2F;css&#x2F;custom.css" href="/.css">
+
+
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
@@ -98,7 +105,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>好事</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -194,13 +201,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/images/%E5%AE%8C%E7%BE%8E%E7%9A%84%E6%97%A5%E5%AD%90.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="centos环境下部署nacos2.2.0"></span>
           
         </div>
 
@@ -211,8 +218,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-03-27 15:23" pubdate>
-          2025年3月27日 下午
+        <time datetime="2025-04-24 11:40" pubdate>
+          2025年4月24日 中午
         </time>
       </span>
     
@@ -223,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18 字
+          905 字
         
       </span>
     
@@ -234,7 +241,7 @@
         
         
         
-          1 分钟
+          8 分钟
         
       </span>
     
@@ -271,24 +278,59 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hello World</h1>
+            <h1 id="seo-header">centos环境下部署nacos2.2.0</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
+                <h1 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h1><p>工作需要基于centos环境搭建一套nacos单机，现做简单记录。</p>
+<h1 id="安装部署单机nacos"><a href="#安装部署单机nacos" class="headerlink" title="安装部署单机nacos"></a>安装部署单机nacos</h1><ol>
+<li><p>安装java环境<br>yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel</p>
+</li>
+<li><p>设置java环境变量<br>  vi &#x2F;etc&#x2F;profile</p>
+</li>
+</ol>
+<p>  在文件末尾添加：<br>  export JAVA_HOME&#x3D;$(dirname $(dirname $(readlink $(which javac))))<br>  export PATH&#x3D;$JAVA_HOME&#x2F;bin:$PATH</p>
+<p>  执行使配置生效：<br>  source &#x2F;etc&#x2F;profile</p>
+<p>  验证安装：<br>  java -version</p>
+<ol start="3">
+<li><p>下载安装nacos安装包<br>从github上下载nacos安装包<br>wget <a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/releases/download/2.3.0/nacos-server-2.3.0.tar.gz">https://github.com/alibaba/nacos/releases/download/2.3.0/nacos-server-2.3.0.tar.gz</a><br>解压安装包<br>tar -zxvf nacos-server-2.3.0.tar.gz<br>mv nacos &#x2F;home&#x2F;gl&#x2F;nacos  # 选择路径</p>
+</li>
+<li><p>运行nacos （单机模式）<br>vi &#x2F;home&#x2F;gl&#x2F;nacos&#x2F;bin&#x2F;startup.sh<br>找到：MODE&#x3D;”cluster” 改为：MODE&#x3D;”standalone”<br>或者运行时加参数：<br>sh startup.sh -m standalone</p>
+</li>
+<li><p>查看nacos是否启动成功<br>  ps -ef | grep nacos<br>  netstat -tunlp | grep 8848<br>  也可以访问浏览器：http:&#x2F;&#x2F;&lt;服务器IP&gt;:8848&#x2F;nacos</p>
+</li>
+</ol>
+<p>  也可以观察启动日志，成功的日志会有nacos字样的图形展示<br>  &#x2F;nacos&#x2F;logs&#x2F;start.out</p>
+<p>  停止nacos命令：<br>  sh &#x2F;home&#x2F;gl&#x2F;nacos&#x2F;bin&#x2F;shutdown.sh</p>
+<ol start="6">
+<li>本地项目相关配置<blockquote>
+</blockquote>
+spring:<br>  application:<br> name: mes<br>  profiles:<br> active: dev #表示开发环境<br>  cloud:<br> nacos:<br>   discovery:<br> server-addr: 192.168.92.61:8848<br> service: mes<br> # 禁用nacos自动配置<br> enabled: true<br> namespace: 924181f7-3333-1111-2222-41979ef403dc<br> group: DEFAULT_GROUP<br> username: nacos<br> password: nacos<br>   config:<br> server-addr: 192.168.92.61:8848<br> file-extension: yaml<br> # 禁用nacos自动配置<br> enabled: true<br> namespace: 924181f7-3333-1111-2222-41979ef403dc<br> group: DEFAULT_GROUP<br> # 服务器名字<br> prefix: mes<br> username: nacos<br> password: nacos</li>
+</ol>
+<h1 id="部署持久化的mysql"><a href="#部署持久化的mysql" class="headerlink" title="部署持久化的mysql"></a>部署持久化的mysql</h1><ol>
+<li><p>执行相关脚本<br>  2.2.0版本的nacos，需要来到 &#x2F;nacos&#x2F;conf&#x2F;mysql-schema.sql内容，在navicate执行该脚本，创建对应表及数据</p>
+</li>
+<li><p>修改&#x2F;nacos&#x2F;conf&#x2F;application.properties 文件，修改内容如下：</p>
+</li>
+</ol>
+  <blockquote>
+  #*************** Config Module Related Configurations ***************#
+  ### If use MySQL as datasource:
+  spring.datasource.platform=mysql
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="Count-of-DB"><a href="#Count-of-DB" class="headerlink" title="Count of DB:"></a>Count of DB:</h3><p>  db.num&#x3D;1</p>
+<h3 id="Connect-URL-of-DB"><a href="#Connect-URL-of-DB" class="headerlink" title="Connect URL of DB:"></a>Connect URL of DB:</h3><p>  db.url.0&#x3D;jdbc:mysql:&#x2F;&#x2F;ip地址:3306&#x2F;数据库名?characterEncoding&#x3D;utf8&amp;connectTimeout&#x3D;1000&amp;socketTimeout&#x3D;3000&amp;autoReconnect&#x3D;true&amp;useUnicode&#x3D;true&amp;useSSL&#x3D;false&amp;serverTimezone&#x3D;UTC<br>  db.user.0&#x3D;数据库账号<br>  db.password.0&#x3D;数据库密码</p>
+<h3 id="If-turn-on-auth-system"><a href="#If-turn-on-auth-system" class="headerlink" title="If turn on auth system:"></a>If turn on auth system:</h3><p>  nacos.core.auth.enabled&#x3D;true<br>  nacos.security.user.name&#x3D;nacos<br>  nacos.security.user.password&#x3D;nacos<br>  </blockquote></p>
+<ol start="3">
+<li>停止并重启nacos<br>注意，2.2.0 版本的访问地址为：<a target="_blank" rel="noopener" href="http://ip地址:8848/nacos/index.html">http://ip地址:8848/nacos/index.html</a></li>
+</ol>
+<h1 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h1><p>在部署nacos过程中，遇到一些问题，做如下梳理：</p>
+<h2 id="账号密码登录错误"><a href="#账号密码登录错误" class="headerlink" title="账号密码登录错误"></a>账号密码登录错误</h2><p>  部署完成，登录页面能够正常打开，但是输入配置文件当中的账号密码，仍然无法登录，提示账号密码错误。手动修改对应数据库user表，对 password md5 加密后，仍然无法登录。最终排查发现是 db.url.0 中配置的 “ip地址：3306&#x2F;数据库名”，其中数据库名我没有调整成和 mysql 数据库一致，导致其实一直没有正确的连接到数据库。</p>
+<h2 id="能注册到-nacos-但是无法获取到对应的配置"><a href="#能注册到-nacos-但是无法获取到对应的配置" class="headerlink" title="能注册到 nacos 但是无法获取到对应的配置"></a>能注册到 nacos 但是无法获取到对应的配置</h2><p>  登录后发现系统正常注册，但是一直无法获取到配置。各种原因排查一遍，需要注意如下两点：</p>
+<p>  其一，配置文件的dataID &#x3D; {application.name}-{profiles.active}.{nacos.config.file-extension},项目在启动的时候会优先加载{application.name}‑{profile}.{file‑extension}，再加载{application.name}.{file‑extension}</p>
+<p>  其二，在 Spring 项目中，application.yml 和 bootstrap.yml 都是用来定义配置属性的 YAML 文件，但它们在加载时机、作用范围和适用场景上有明显区别：其中 bootstrap.yml 最早被加载，位于 spring 上下文初始化阶段，而 application.yml 会在 Spring 上下文创建完基础环境后加载，即应用阶段。</p>
+<p>  我发现自己无法获取配置的原因就是第二点，配置写在 application.yml 当中，导致一直读取不到 nacos 配置文件，换到 bootstrap.yml 果然恢复。</p>
 
                 
               </div>
@@ -297,6 +339,38 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/nacos/" class="print-no-link">#nacos</a>
+      
+        <a href="/tags/centos/" class="print-no-link">#centos</a>
+      
+        <a href="/tags/%E8%B8%A9%E5%9D%91/" class="print-no-link">#踩坑</a>
+      
+    </div>
   
 </div>
 
@@ -306,8 +380,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>https://wuzu15hao.com/post/undefined/</div>
+      <div>centos环境下部署nacos2.2.0</div>
+      <div>https://wuzu15hao.com/post/deployNacosInCentos/</div>
     </div>
     <div class="license-meta">
       
@@ -319,7 +393,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年3月27日</div>
+          <div>2025年4月24日</div>
         </div>
       
       
@@ -351,15 +425,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/post/undefined/" title="World!">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">World!</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/post/writeGoodNews/" title="匆匆，真的是匆匆">
+                        <span class="hidden-mobile">匆匆，真的是匆匆</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
